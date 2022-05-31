@@ -1,0 +1,43 @@
+<!doctype html><html lang=id><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><link href=/img/web.svg rel=icon><meta content="Menjelaskan cara menggabung isi file dalam jumlah banyak dengan sangat cepat" name=description><meta content="Trik Menggabung Isi File Dengan Cepat" property=og:title><meta content="Menjelaskan cara menggabung isi file dalam jumlah banyak dengan sangat cepat" property=og:description><title>Trik Menggabung Isi File Dengan Cepat</title><link href="/artikel.css?h=3f7e77c816fb8414366240cba6eb3a86c3e4d4aa82c19384eb46fbb1a047c1ef" rel=stylesheet><body><div id=wrapper><section class="row row-end row-center-md gap-1 navbar"><div><a href=/>HOME</a></div><div><a href=/blog>BLOG</a></div></section><main><article class="card bg-dark-1"><div class=heading><p class=headline>Trik Menggabung Isi File Dengan Cepat<p class=stat>Dipublish: 08 Jan 2022<p class=stat>Waktu baca: 3 menit</div><div class=isi><p>Bayangkan kamu punya 2 buah file yang isinya tulisan dan kamu pingin isi dari file tadi digabung jadi satu, apakah yang akan kamu<span id=continue-reading></span> lakuin?<pre class=z-code><code><span class="z-text z-plain">a.txt
+
+b.txt
+</span></code></pre><h2 id=old-way>Old Way</h2><p>mungkin kamu akan melakukan step berikut ini:<ol><li>buka salah satu file di editor<li>copy seluruh isi file<li>paste ke dalam file yg lain<li>selesai</ol><p>atau seperti ini<ol><li>buat file baru (untuk menampung isi dari kedua file)<li>buka salah satu file lalu copy seluruh isinya<li>paste ke file baru<li>buka file yg lain lalu copy seluruh isinya<li>paste ke file baru<li>selesai</ol><p>Terlihat sangat mudah dilakukan bukan, sekarang bayangkan kita punya 10 file yang ingin digabung<pre class=z-code><code><span class="z-text z-plain">lorem.txt       sit.txt                       adipisicing.txt       do.txt
+
+ipsum.txt      amet.txt                  elit.txt
+
+dolor.txt        consectetur.txt       sed.txt
+</span></code></pre><p>kita masih bisa menggunakan cara diatas, no problem what so ever.. namun sekarang bayangin misal ada 100 file yang harus digabung disini mulai nampak kelemahan kita sebagai manusia yaitu:<ul><li><p>Rugi waktu</p> <p>ngerjain 100 file butuh berapa puluh menit ya?</p><li><p>Rugi effort</p> <ul><li>yakin dari 100 file g ada yg kelewat sama sekali?<li>yakin selama pengerjaan gak ngepaste 2 kali tanpa sengaja atau lupa di paste?<li>gimana cara ngecek kalo pengerjaannya udah bener?<li>kalo ada salah gimana cara perbaikinnya?</ul></ul><p>kalo anda tidak punya kelemahan diatas selamat anda adalah seorang superman hehe.. karena penulis adalah seorang manusia biasa yang penuh kelemahan maka pakenya cara seperti berikut<h2 id=new-way>New Way</h2><p>let say misalnya ada 15 file yang ingin digabung<pre class=z-code><code><span class="z-text z-plain">lorem.txt       consectetur.txt     eiusmod.txt
+
+ipsum.txt      adipisicing.txt      tempor.txt
+
+dolor.txt        elit.txt                    incididunt.txt
+
+sit.txt             sed.txt                   ut.txt
+
+amet.txt        do.txt                     labore.txt
+</span></code></pre><p>Langkah pertama taruh seluruh file dalam satu folder yang sama (nama foldernya bebas)<pre class=z-code><code><span class="z-text z-plain">> folder_tes
+
+        lorem.txt       consectetur.txt     eiusmod.txt
+
+        ipsum.txt      adipisicing.txt      tempor.txt
+
+        dolor.txt        elit.txt                    incididunt.txt
+
+        sit.txt             sed.txt                   ut.txt
+
+        amet.txt        do.txt                     labore.txt
+</span></code></pre><p>Langkah kedua buka terminal lalu arahkan ke dalam folder tadi<pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> folder_tes</span>
+</span></code></pre><p>Langkah ketiga ketik command berikut<pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-keyword z-operator z-regexp z-quantifier z-shell">*</span> <span class="z-keyword z-operator z-assignment z-redirection z-shell">></span> hasil.txt</span>
+</span></code></pre><p>command diatas akan menggabungkan seluruh file lalu outputnya akan disimpan ke dalam file baru bernama "hasil.txt" (nama file bisa diganti sesuka hati)<p>sangat simple sekali bukan, dengan cara diatas walau terdapat 100, 1.000, bahkan 100.000 file sekalipun bisa digabung dengan sangat cepat dan udah pasti diproses seluruhnya dengan benar tanpa kelewat satupun.<p>satu lagi kelebihan cara baru ini adalah kita bisa menentukan urutan penggabungan file dengan jalan merename file tadi<pre class=z-code><code><span class="z-text z-plain">> folder_tes
+
+        02lorem.txt       01consectetur.txt     05eiusmod.txt
+
+        10ipsum.txt      11adipisicing.txt      03tempor.txt
+
+        04dolor.txt        08elit.txt                    09incididunt.txt
+
+        06sit.txt             07sed.txt                   12ut.txt
+
+        13amet.txt        14do.txt                     15labore.txt
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-keyword z-operator z-regexp z-quantifier z-shell">*</span> <span class="z-keyword z-operator z-assignment z-redirection z-shell">></span> hasil.txt</span>
+</span></code></pre><p>file akan diproses sesuai urutan nomor, pada file "hasil.txt" isi file dari nomor awalan 01 akan berada di posisi paling atas diikuti nomor selanjutnya sampai akhirnya isi file nomor awalan 15 akan berada di posisi paling bawah.<h2 id=real-world-example>Real World Example</h2><p>Cara diatas pernah digunakan oleh penulis saat menangani project scraping data dengan jumlah lebih dari 300 file berformat .csv, masing-masing file memiliki isi setidaknya ratusan baris menggunakan command diatas seluruh file dapat digabung menjadi satu file .csv tunggal secara sempurna dengan jumlah baris mencapai 270.000 lebih terurut secara rapi dalam sekejap mata</div></article></main></div><div id=lowres><p>Mohon maaf, resolusi layar anda terlalu rendah.</div>

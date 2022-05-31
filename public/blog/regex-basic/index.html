@@ -1,0 +1,86 @@
+<!doctype html><html lang=id><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><link href=/img/web.svg rel=icon><meta content="Menjelaskan syntax dasar regex dan penggunaanya" name=description><meta content="Regular Expression (Regex) Dasar" property=og:title><meta content="Menjelaskan syntax dasar regex dan penggunaanya" property=og:description><title>Regular Expression (Regex) Dasar</title><link href="/artikel.css?h=3f7e77c816fb8414366240cba6eb3a86c3e4d4aa82c19384eb46fbb1a047c1ef" rel=stylesheet><body><div id=wrapper><section class="row row-end row-center-md gap-1 navbar"><div><a href=/>HOME</a></div><div><a href=/blog>BLOG</a></div></section><main><article class="card bg-dark-1"><div class=heading><p class=headline>Regular Expression (Regex) Dasar<p class=stat>Dipublish: 19 Jan 2022<p class=stat>Waktu baca: 4 menit</div><div class=isi><p>Regular Expression merupakan salah satu ilmu yang harus dipelajari terutama dalam bidang IT karena sebagai programmer atau data analyst kamu pasti sering<span id=continue-reading></span> menemukan problem yang berkaitan dengan Regular Expression.<h2 id=kenapa-belajar-ginian>Kenapa belajar ginian?</h2><p>Regular Expresion digunakan dalam banyak kasus, contohnya pada validasi input kita bisa pake Regex untuk memeriksa apakah user memasukkan email dengan format yang benar atau tidak. Contoh lainnya pada fitur comment moderation dengan bantuan Regex kita bisa memfilter komentar yang mengandung kata-kata kasar atau spam, dalam proses pengolahan data Regex dapat digunakan untuk memfilter data yang tidak diperlukan dan masih banyak lagi contoh-contoh yang lainnya.<h2 id=apa-itu-regex>Apa itu Regex?</h2><p>Regular Expression atau disingkat Regex menurut penulis adalah sebuah kode yang dapat digunakan untuk mencari dan mengekstrak pola tertentu dari suatu teks.<p>Berdasarkan <a href=https://en.wikipedia.org/wiki/Regular_expression#Standards>wikipedia</a> Regex memiliki 3 varian rasa yaitu:<ul><li>BRE (Basic Regular Expressions)<li>ERE (Extended Regular Expressions)<li>Perl Regex</ul><p>Pada pembahasan kali ini kita akan menggunakan command "grep" pada linux untuk melakukan pattern matching pada teks menggunakan varian Basic Regular Expressions<h2 id=case-sensitive>Case sensitive</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+Dan aku akan lebih tidak perduli
+Aku mau hidup seribu tahun lagi
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>aku<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari kata "aku" dengan posisi bebas mulai awal kalimat, ditengah maupun diakhir. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">Dan aku akan lebih tidak perduli
+</span></code></pre><p>Perhatikan karena bersifat case sensitive maka kata "Aku" pada baris kedua sample.txt diatas tidaklah valid<h2 id=case-insensitive>Case Insensitive</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+Dan aku akan lebih tidak perduli
+Aku mau hidup seribu tahun lagi
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>[Aa]ku<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><blockquote><p>bisa diisi [Aa] atau [aA]</blockquote><p>perintah diatas akan mencari kata "aku" dan "Aku" sekaligus dengan posisi bebas mulai awal kalimat, ditengah maupun diakhir. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">Dan aku akan lebih tidak perduli
+Aku mau hidup seribu tahun lagi
+</span></code></pre><h2 id=multi-word>Multi Word</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+September ceria
+11 Januari
+Musim yang bahagia
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>Januari\|September<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari kata "Januari" dan "September" sekaligus dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">September ceria
+11 Januari
+</span></code></pre><h2 id=multi-character>Multi Character</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+nyonya hidup kembali
+Di depan sekali njonja menanti
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>n[yj]on[yj]a<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><blockquote><p>bisa diisi [yj] atau [jy]</blockquote><p>perintah diatas akan mencari kata dengan ejaan yang berbeda yaitu "nyonya" dan "njonja" sekaligus dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">nyonya hidup kembali
+Di depan sekali njonja menanti
+</span></code></pre><h2 id=optional-character>Optional Character</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+taukah kamu bahwa
+kau begitu sempurna
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>kam\?u<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari kata "kamu" dan "kau" dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">taukah kamu bahwa
+kau begitu sempurna
+</span></code></pre><p>hal ini bisa dilakukan karena huruf "m" disini bersifat optional sehingga kata "kamu" dan "kau" dianggap valid<h2 id=word-boundary>Word Boundary</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+beri aku jalan
+memberi itu lebih baik
+jawabannya akan ku beritahu
+memberikan pertolongan
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>\bberi<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari pola kata "beri" hanya jika pola kata tsb berada di awal kata dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">beri aku jalan
+jawabannya akan ku beritahu
+</span></code></pre><p>kata "memberi" dan "memberikan" tidak valid karena pola kata "beri" tidak berada di awal kata<pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>beri\b<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari pola kata "beri" hanya jika pola kata tsb berada di akhir kata dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">beri aku jalan
+memberi itu lebih baik
+</span></code></pre><p>kata "beritahu" dan "memberikan" tidak valid karena pola kata "beri" tidak berada di akhir kata<pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>\bberi\b<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari pola kata "beri" hanya jika pola kata tsb berdiri sendiri dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">beri aku jalan
+</span></code></pre><p>kata "memberi", "beritahu" dan "memberikan" tidak valid karena pola kata "beri" mendapat imbuhan<h2 id=match-line>Match Line</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+beritahu bagaimana caranya
+beri aku kesempatan
+apapun akan aku beri
+hendaknya kita memberikan pertolongan
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>^beri<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah ini akan mencari kata "beri" hanya jika posisinya diawal baris. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">beritahu bagaimana caranya
+beri aku kesempatan
+</span></code></pre><h2 id=count-pattern>Count Pattern</h2><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+Perang dunia kedua terjadi tahun 1945
+kenaikan mencapai 50 kali lipat
+gempa bumi dengan skala 9
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>[[:digit:]]\{4\}<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari angka dengan jumlah 4 digit dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">Perang dunia kedua terjadi tahun 1945
+</span></code></pre><pre class=z-code><code><span class="z-text z-plain">// sample.txt
+
+
+Indonesia
+perjuangan
+internasional
+</span></code></pre><pre class="language-bash z-code" data-lang=bash><code class=language-bash data-lang=bash><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">'</span>[[:alpha:]]\{10\}<span class="z-punctuation z-definition z-string z-end z-shell">'</span></span> sample.txt</span>
+</span></code></pre><p>perintah diatas akan mencari kata dengan jumlah huruf sebanyak 10 huruf dimanapun posisinya berada. Hasilnya sebagai berikut<pre class=z-code><code><span class="z-text z-plain">perjuangan
+internasional
+</span></code></pre><blockquote><h2 id=info>Info!</h2><p>Perhatikan disini bahwa kata "internasional" terdiri atas 13 huruf tapi kok malah tercantum dalam hasil? sebenarnya hasil valid nya adalah seperti ini</blockquote><pre class=z-code><code><span class="z-text z-plain">perjuangan
+
+internasio
+</span></code></pre><blockquote><p>namun command grep tidak melakukan pemotongan terhadap teks sehingga kata "internasional" ditampilkan apa adanya</blockquote><h2 id=penutup>Penutup</h2><p>Nah itu tadi beberapa contoh kecil syntax dasar dari Regex, penulis menyadari bahwa masih banyak syntax yang mungkin tidak tercantum dalam artikel ini karena gak mungkin ngebahas semuanya. Jadi karena itulah kamu harus mencari referensi tambahan diluar sana agar makin menguasai Regex<p>Sekian, Terima kasih</div></article></main></div><div id=lowres><p>Mohon maaf, resolusi layar anda terlalu rendah.</div>
